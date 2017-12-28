@@ -15,6 +15,7 @@
  * limitations under the License.
  */
 
+#include <emscripten/bind.h>
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -26,6 +27,7 @@
 #include <zxing/ReaderException.h>
 #include <zxing/common/GlobalHistogramBinarizer.h>
 #include <zxing/common/HybridBinarizer.h>
+#include <zxing/common/GreyscaleLuminanceSource.h>
 #include <exception>
 #include <zxing/Exception.h>
 #include <zxing/common/IllegalArgumentException.h>
@@ -42,6 +44,7 @@ using namespace std;
 using namespace zxing;
 using namespace zxing::multi;
 using namespace zxing::qrcode;
+using namespace emscripten;
 
 namespace {
 
@@ -294,4 +297,29 @@ int main(int argc, char** argv) {
   }
 
   return 0;
+}
+
+int read_code(int source_ptr, int width, int height) {
+  /* We can't have pointers on primitive types,
+     which means we can't easily pass arrays.
+     The recommended workaround seems to be to write
+     into the emscripten heap beforehand and call
+     the function with a pointer to the address. */
+  uint8_t *source = reinterpret_cast<uint8_t*>(source_ptr);
+  int size = width * height;
+
+  std::vector<unsigned char> v_src;
+  for (auto i = 0; i < size; i++) {
+    v_src.push_back((unsigned char)source[i]);
+  }
+  zxing::ArrayRef<char> array_ref (width * height);
+  memcpy(&array_ref[0], &v_src[0], array_ref->size());
+
+  GreyscaleLuminanceSource grey (array_ref, width, height, 0, 0, width, height);
+  Ref<GreyscaleLuminanceSource> grey_ref (&grey);
+  return read_image(grey_ref, false, "");
+}
+
+EMSCRIPTEN_BINDINGS(libzxing) {
+  emscripten::function("read_code", &read_code);
 }
