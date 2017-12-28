@@ -299,7 +299,7 @@ int main(int argc, char** argv) {
   return 0;
 }
 
-int read_code(int source_ptr, int width, int height) {
+string read_code(int source_ptr, int width, int height) {
   /* We can't have pointers on primitive types,
      which means we can't easily pass arrays.
      The recommended workaround seems to be to write
@@ -317,7 +317,25 @@ int read_code(int source_ptr, int width, int height) {
 
   GreyscaleLuminanceSource grey (array_ref, width, height, 0, 0, width, height);
   Ref<GreyscaleLuminanceSource> grey_ref (&grey);
-  return read_image(grey_ref, false, "");
+
+  // ======
+  vector<Ref<Result> > results;
+  int res = 0;
+
+  try {
+    GlobalHistogramBinarizer binarizer(grey_ref);
+    Ref<GlobalHistogramBinarizer> binarizer_ref(&binarizer);
+    DecodeHints hints(DecodeHints::DEFAULT_HINT);
+    hints.setTryHarder(try_harder);
+    Ref<BinaryBitmap> binary(new BinaryBitmap(binarizer_ref));
+    results = decode(binary, hints);
+  } catch (const std::exception& e) {
+    res = -1;
+  }
+  if (res == 0 && results.size() == 1) {
+    return results[0]->getText()->getText();
+  }
+  return "";
 }
 
 EMSCRIPTEN_BINDINGS(libzxing) {
