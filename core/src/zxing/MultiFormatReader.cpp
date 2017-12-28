@@ -18,11 +18,11 @@
 #include <zxing/ZXing.h>
 #include <zxing/MultiFormatReader.h>
 #include <zxing/qrcode/QRCodeReader.h>
-#include <zxing/datamatrix/DataMatrixReader.h>
-#include <zxing/aztec/AztecReader.h>
-#include <zxing/pdf417/PDF417Reader.h>
-#include <zxing/oned/MultiFormatUPCEANReader.h>
-#include <zxing/oned/MultiFormatOneDReader.h>
+// #include <zxing/datamatrix/DataMatrixReader.h>
+// #include <zxing/aztec/AztecReader.h>
+// #include <zxing/pdf417/PDF417Reader.h>
+// #include <zxing/oned/MultiFormatUPCEANReader.h>
+// #include <zxing/oned/MultiFormatOneDReader.h>
 #include <zxing/ReaderException.h>
 
 using zxing::Ref;
@@ -34,7 +34,7 @@ using zxing::DecodeHints;
 using zxing::BinaryBitmap;
 
 MultiFormatReader::MultiFormatReader() {}
-  
+
 Ref<Result> MultiFormatReader::decode(Ref<BinaryBitmap> image) {
   setHints(DecodeHints::DEFAULT_HINT);
   return decodeInternal(image);
@@ -71,19 +71,19 @@ void MultiFormatReader::setHints(DecodeHints hints) {
     hints.containsFormat(BarcodeFormat::RSS_14) ||
     hints.containsFormat(BarcodeFormat::RSS_EXPANDED);
   if (addOneDReader && !tryHarder) {
-    readers_.push_back(Ref<Reader>(new zxing::oned::MultiFormatOneDReader(hints)));
+    // readers_.push_back(Ref<Reader>(new zxing::oned::MultiFormatOneDReader(hints)));
   }
   if (hints.containsFormat(BarcodeFormat::QR_CODE)) {
     readers_.push_back(Ref<Reader>(new zxing::qrcode::QRCodeReader()));
   }
   if (hints.containsFormat(BarcodeFormat::DATA_MATRIX)) {
-    readers_.push_back(Ref<Reader>(new zxing::datamatrix::DataMatrixReader()));
+    // readers_.push_back(Ref<Reader>(new zxing::datamatrix::DataMatrixReader()));
   }
   if (hints.containsFormat(BarcodeFormat::AZTEC)) {
-    readers_.push_back(Ref<Reader>(new zxing::aztec::AztecReader()));
+    // readers_.push_back(Ref<Reader>(new zxing::aztec::AztecReader()));
   }
   if (hints.containsFormat(BarcodeFormat::PDF_417)) {
-    readers_.push_back(Ref<Reader>(new zxing::pdf417::PDF417Reader()));
+    // readers_.push_back(Ref<Reader>(new zxing::pdf417::PDF417Reader()));
   }
   /*
   if (hints.contains(BarcodeFormat.MAXICODE)) {
@@ -91,20 +91,20 @@ void MultiFormatReader::setHints(DecodeHints hints) {
   }
   */
   if (addOneDReader && tryHarder) {
-    readers_.push_back(Ref<Reader>(new zxing::oned::MultiFormatOneDReader(hints)));
+    // readers_.push_back(Ref<Reader>(new zxing::oned::MultiFormatOneDReader(hints)));
   }
   if (readers_.size() == 0) {
     if (!tryHarder) {
-      readers_.push_back(Ref<Reader>(new zxing::oned::MultiFormatOneDReader(hints)));
+      // readers_.push_back(Ref<Reader>(new zxing::oned::MultiFormatOneDReader(hints)));
     }
     readers_.push_back(Ref<Reader>(new zxing::qrcode::QRCodeReader()));
-    readers_.push_back(Ref<Reader>(new zxing::datamatrix::DataMatrixReader()));
-    readers_.push_back(Ref<Reader>(new zxing::aztec::AztecReader()));
-    readers_.push_back(Ref<Reader>(new zxing::pdf417::PDF417Reader()));
+    // readers_.push_back(Ref<Reader>(new zxing::datamatrix::DataMatrixReader()));
+    // readers_.push_back(Ref<Reader>(new zxing::aztec::AztecReader()));
+    // readers_.push_back(Ref<Reader>(new zxing::pdf417::PDF417Reader()));
     // readers.add(new MaxiCodeReader());
 
     if (tryHarder) {
-      readers_.push_back(Ref<Reader>(new zxing::oned::MultiFormatOneDReader(hints)));
+      // readers_.push_back(Ref<Reader>(new zxing::oned::MultiFormatOneDReader(hints)));
     }
   }
 }
@@ -120,5 +120,5 @@ Ref<Result> MultiFormatReader::decodeInternal(Ref<BinaryBitmap> image) {
   }
   throw ReaderException("No code detected");
 }
-  
+
 MultiFormatReader::~MultiFormatReader() {}

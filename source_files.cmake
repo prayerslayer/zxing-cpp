@@ -23,14 +23,6 @@ set(LIBZXING_FILES
     core/src/bigint/BigUnsignedInABase.hh
     core/src/bigint/NumberlikeArray.hh
     core/src/bigint/NumberlikeArray.hh
-    core/src/zxing/aztec/AztecDetectorResult.cpp
-    core/src/zxing/aztec/AztecDetectorResult.h
-    core/src/zxing/aztec/AztecReader.cpp
-    core/src/zxing/aztec/AztecReader.h
-    core/src/zxing/aztec/decoder/Decoder.cpp
-    core/src/zxing/aztec/decoder/Decoder.h
-    core/src/zxing/aztec/detector/Detector.cpp
-    core/src/zxing/aztec/detector/Detector.h
     core/src/zxing/BarcodeFormat.cpp
     core/src/zxing/BarcodeFormat.h
     core/src/zxing/Binarizer.cpp
@@ -87,24 +79,6 @@ set(LIBZXING_FILES
     core/src/zxing/common/Str.h
     core/src/zxing/common/StringUtils.cpp
     core/src/zxing/common/StringUtils.h
-    core/src/zxing/datamatrix/DataMatrixReader.cpp
-    core/src/zxing/datamatrix/DataMatrixReader.h
-    core/src/zxing/datamatrix/decoder/BitMatrixParser.cpp
-    core/src/zxing/datamatrix/decoder/BitMatrixParser.h
-    core/src/zxing/datamatrix/decoder/DataBlock.cpp
-    core/src/zxing/datamatrix/decoder/DataBlock.h
-    core/src/zxing/datamatrix/decoder/DecodedBitStreamParser.cpp
-    core/src/zxing/datamatrix/decoder/DecodedBitStreamParser.h
-    core/src/zxing/datamatrix/decoder/Decoder.cpp
-    core/src/zxing/datamatrix/decoder/Decoder.h
-    core/src/zxing/datamatrix/detector/CornerPoint.cpp
-    core/src/zxing/datamatrix/detector/CornerPoint.h
-    core/src/zxing/datamatrix/detector/Detector.cpp
-    core/src/zxing/datamatrix/detector/Detector.h
-    core/src/zxing/datamatrix/detector/DetectorException.cpp
-    core/src/zxing/datamatrix/detector/DetectorException.h
-    core/src/zxing/datamatrix/Version.cpp
-    core/src/zxing/datamatrix/Version.h
     core/src/zxing/DecodeHints.cpp
     core/src/zxing/DecodeHints.h
     core/src/zxing/Exception.cpp
@@ -131,52 +105,6 @@ set(LIBZXING_FILES
     core/src/zxing/MultiFormatReader.cpp
     core/src/zxing/MultiFormatReader.h
     core/src/zxing/NotFoundException.h
-    core/src/zxing/oned/CodaBarReader.cpp
-    core/src/zxing/oned/CodaBarReader.h
-    core/src/zxing/oned/Code128Reader.cpp
-    core/src/zxing/oned/Code128Reader.h
-    core/src/zxing/oned/Code39Reader.cpp
-    core/src/zxing/oned/Code39Reader.h
-    core/src/zxing/oned/Code93Reader.cpp
-    core/src/zxing/oned/Code93Reader.h
-    core/src/zxing/oned/EAN13Reader.cpp
-    core/src/zxing/oned/EAN13Reader.h
-    core/src/zxing/oned/EAN8Reader.cpp
-    core/src/zxing/oned/EAN8Reader.h
-    core/src/zxing/oned/ITFReader.cpp
-    core/src/zxing/oned/ITFReader.h
-    core/src/zxing/oned/MultiFormatOneDReader.cpp
-    core/src/zxing/oned/MultiFormatOneDReader.h
-    core/src/zxing/oned/MultiFormatUPCEANReader.cpp
-    core/src/zxing/oned/MultiFormatUPCEANReader.h
-    core/src/zxing/oned/OneDReader.cpp
-    core/src/zxing/oned/OneDReader.h
-    core/src/zxing/oned/OneDResultPoint.cpp
-    core/src/zxing/oned/OneDResultPoint.h
-    core/src/zxing/oned/UPCAReader.cpp
-    core/src/zxing/oned/UPCAReader.h
-    core/src/zxing/oned/UPCEANReader.cpp
-    core/src/zxing/oned/UPCEANReader.h
-    core/src/zxing/oned/UPCEReader.cpp
-    core/src/zxing/oned/UPCEReader.h
-    core/src/zxing/pdf417/decoder/BitMatrixParser.cpp
-    core/src/zxing/pdf417/decoder/BitMatrixParser.h
-    core/src/zxing/pdf417/decoder/DecodedBitStreamParser.cpp
-    core/src/zxing/pdf417/decoder/DecodedBitStreamParser.h
-    core/src/zxing/pdf417/decoder/Decoder.cpp
-    core/src/zxing/pdf417/decoder/Decoder.h
-    core/src/zxing/pdf417/decoder/ec/ErrorCorrection.cpp
-    core/src/zxing/pdf417/decoder/ec/ErrorCorrection.h
-    core/src/zxing/pdf417/decoder/ec/ModulusGF.cpp
-    core/src/zxing/pdf417/decoder/ec/ModulusGF.h
-    core/src/zxing/pdf417/decoder/ec/ModulusPoly.cpp
-    core/src/zxing/pdf417/decoder/ec/ModulusPoly.h
-    core/src/zxing/pdf417/detector/Detector.cpp
-    core/src/zxing/pdf417/detector/Detector.h
-    core/src/zxing/pdf417/detector/LinesSampler.cpp
-    core/src/zxing/pdf417/detector/LinesSampler.h
-    core/src/zxing/pdf417/PDF417Reader.cpp
-    core/src/zxing/pdf417/PDF417Reader.h
     core/src/zxing/qrcode/decoder/BitMatrixParser.cpp
     core/src/zxing/qrcode/decoder/BitMatrixParser.h
     core/src/zxing/qrcode/decoder/DataBlock.cpp
