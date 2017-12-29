@@ -19,4 +19,4 @@ export CXXFLAGS="--bind --std=c++11 -s ALLOW_MEMORY_GROWTH=1 -s WASM=1 -s NO_EXI
 emcmake cmake ..
 emmake make
 
-cp zxing.js zxing.wasm ../../zxing-build/
+# cp zxing.js zxing.wasm ../../zxing-build/
